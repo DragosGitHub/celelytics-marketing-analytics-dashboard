@@ -92,7 +92,7 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('background.jpg') no-repeat center center;
+    background: url('assets/background.jpg') no-repeat center center;
     background-size: cover;
     position: relative;
     color: white;
@@ -415,7 +415,7 @@ footer {
 
 /* Upload Data section */
 #upload {
-    background: url('./background1.jpg') no-repeat center center;
+    background: url('assets/background1.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     position: relative;
@@ -423,7 +423,7 @@ footer {
 
 /* View Insights section */
 #insights {
-    background: url('./background2.jpg') no-repeat center center;
+    background: url('assets/background2.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     position: relative;
@@ -431,7 +431,7 @@ footer {
 
 /* Contact Me section */
 #contact {
-    background: url('./background3.jpg') no-repeat center center;
+    background: url('assets/background3.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     position: relative;
