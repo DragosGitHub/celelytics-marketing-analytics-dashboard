@@ -5,6 +5,8 @@ import logging
 import traceback
 from dotenv import load_dotenv
 from flask_cors import CORS
+import openai
+print("✅ OpenAI version:", openai.__version__)
 from process import (
     load_data_from_adls,
     join_data,
@@ -13,6 +15,7 @@ from process import (
     save_contact_submission
 )
 from openai import AzureOpenAI  # ✅ GPT integration
+
 
 # ✅ Logging setup
 logging.basicConfig(level=logging.DEBUG)
