@@ -44,7 +44,7 @@ AZURE_DEPLOYMENT_NAME = "chatbot-gpt"
 
 # ✅ Initialize OpenAI client
 azure_client = AzureOpenAI(
-    api_version="2024-12-01-preview",
+    api_version="2023-12-01-preview",
     azure_endpoint=AZURE_OPENAI_ENDPOINT,
     api_key=AZURE_OPENAI_KEY
 )
