@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: celelytics-backend
-    env: docker
-    plan: free
-    rootDir: backend
