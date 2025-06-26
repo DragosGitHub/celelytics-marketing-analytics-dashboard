@@ -1,4 +1,6 @@
-env: python
-pythonVersion: 3.11.9
-buildCommand: pip install -r requirements.txt
-startCommand: gunicorn app:app
+services:
+  - type: web
+    name: celelytics-backend
+    env: docker
+    plan: free
+    rootDir: backend
