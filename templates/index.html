@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Celebal Analytics Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <link rel="stylesheet" href="/static/css/chatbot.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo-box">
+      <h1 class="brand-logo">Celelytics</h1>
+      <small class="brand-subtext">Built by Saptadip</small>
+    </div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#upload">Upload Data</a></li>
+      <li><a href="#insights">View Insights</a></li>
+      <li><a href="#contact">Contact Me</a></li>
+    </ul>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Marketing Campaign Analytics</h1>
+      <p>Analyze transaction data to optimize marketing strategies</p>
+      <div class="cta-buttons">
+        <button id="useDefaultBtn">Use Sample Data</button>
+        <button id="uploadBtn">Upload Your Data</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="upload" class="hidden">
+    <h2>Upload Transaction Data</h2>
+    <div class="upload-container">
+      <div class="upload-card wide-card">
+        <h3>Step 1: Upload Transaction Data (CSV)</h3>
+        <p>This file should contain sales transactions with details like <code>transaction_id</code>, <code>customer_id</code>, <code>product_id</code>, etc.</p>
+        <input type="file" id="transactionsFile" accept=".csv">
+      </div>
+      <div class="upload-card wide-card">
+        <h3>Step 2: Upload Product Data (CSV)</h3>
+        <p>This file should list products with columns like <code>product_id</code>, <code>product_name</code>, <code>price</code>, and <code>category</code>.</p>
+        <input type="file" id="productsFile" accept=".csv">
+      </div>
+    </div>
+    <button id="processBtn">Generate Insights</button>
+    <div class="upload-warning">
+      ⚠️ Please ensure your CSV files are correctly formatted.<br>
+      <strong>Transaction data:</strong> transaction_id, customer_id, product_id, quantity, date, channel, campaign_id<br>
+      <strong>Product data:</strong> product_id, product_name, price, category
+    </div>
+  </section>
+
+  <section id="insights" class="hidden">
+    <h2>Marketing Insights</h2>
+    <div class="chart-container">
+      <div class="chart-card">
+        <canvas id="aovChart"></canvas>
+        <div class="chart-summary" id="aovSummary"></div>
+      </div>
+      <div class="chart-card">
+        <canvas id="productsChart"></canvas>
+        <div class="chart-summary" id="productsSummary"></div>
+      </div>
+      <div class="chart-card">
+        <canvas id="campaignChart"></canvas>
+        <div class="chart-summary" id="campaignSummary"></div>
+      </div>
+      <div class="chart-card">
+        <canvas id="categoriesChart"></canvas>
+        <div class="chart-summary" id="categoriesSummary"></div>
+      </div>
+    </div>
+    <div class="insights-summary">
+      <h3>Business Recommendations</h3>
+      <div id="recommendations"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="hidden">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <textarea id="message" placeholder="Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <div class="info-footer">
+    <div class="info-card"><span class="label">Student ID:</span> CT_CSI_DE_2390</div>
+    <div class="info-card"><span class="label">Domain:</span> Data Engineering</div>
+    <div class="info-card"><span class="label">College:</span> Chandigarh University</div>
+  </div>
+
+  <!-- 📊 Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/static/js/script.js"></script>
+  <script src="/static/js/chart-config.js"></script>
+
+  <!-- 🤖 Chatbot Widget -->
+  <div id="chatbot-widget">
+    <div id="chat-tooltip">Ask me anything!</div>
+    <button id="openChatBtn" title="Ask me anything Buddy!">🤖</button>
+    <div id="chatContainer" class="hidden">
+      <div class="chat-header">
+        <span>Insight Bot</span>
+        <button id="closeChatBtn">✖</button>
+      </div>
+      <div id="chatMessages"></div>
+      <input id="chatInput" type="text" placeholder="Ask something..." />
+      <button id="sendChatBtn">Send</button>
+    </div>
+  </div>
+
+  <footer class="sticky-footer" id="mainFooter">
+    Project built by <strong>Saptadip Das</strong> as part of <strong>Celebal Technologies Internship</strong>
+  </footer>
+
+  <script>
+    const footer = document.getElementById('mainFooter');
+    let hideTimer;
+    const showFooter = () => {
+      footer.style.opacity = '1';
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => {
+        footer.style.opacity = '0';
+      }, 1000);
+    };
+    document.addEventListener('mousemove', showFooter);
+
+    const toggleChat = () => {
+      document.getElementById('chatContainer').classList.toggle('hidden');
+    };
+
+    document.getElementById('openChatBtn').addEventListener('click', toggleChat);
+    document.getElementById('chat-tooltip').addEventListener('click', toggleChat);
+
+    document.getElementById('closeChatBtn').addEventListener('click', () => {
+      document.getElementById('chatContainer').classList.add('hidden');
+    });
+
+    document.getElementById('sendChatBtn').addEventListener('click', async () => {
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      if (!message) return;
+
+      const chatBox = document.getElementById('chatMessages');
+      chatBox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+      input.value = 'Thinking...';
+      input.disabled = true;
+
+      try {
+        const res = await fetch('/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        });
+        const data = await res.json();
+        chatBox.innerHTML += `<p><strong>Bot:</strong> ${data.reply || '⚠️ Error processing request.'}</p>`;
+      } catch (err) {
+        chatBox.innerHTML += `<p><strong>Bot:</strong> ❌ Unable to connect.</p>`;
+      }
+
+      input.value = '';
+      input.disabled = false;
+    });
+  </script>
+</body>
+</html>
