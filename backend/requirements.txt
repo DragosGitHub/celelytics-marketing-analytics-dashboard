@@ -8,3 +8,4 @@ pandas==1.5.3
 flask-cors==3.0.10
 gunicorn==21.2.0
 scipy==1.11.4
+openai==1.30.1
