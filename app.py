@@ -1,12 +1,12 @@
 import os
 import pandas as pd
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import logging
 import traceback
 from dotenv import load_dotenv
 from flask_cors import CORS
 import openai
-print("✅ OpenAI version:", openai.__version__)
+from openai import AzureOpenAI
 from process import (
     load_data_from_adls,
     join_data,
@@ -14,15 +14,15 @@ from process import (
     store_insights,
     save_contact_submission
 )
-from openai import AzureOpenAI  # ✅ GPT integration
 
+print("✅ OpenAI version:", openai.__version__)
 
 # ✅ Logging setup
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-# ✅ Initialize Flask app
-app = Flask(__name__)
+# ✅ Initialize Flask app and set static/template directories
+app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config['DEBUG'] = True
 CORS(app)
 
@@ -49,6 +49,12 @@ azure_client = AzureOpenAI(
     api_key=AZURE_OPENAI_KEY
 )
 
+# ✅ Serve frontend index.html
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+# ✅ Process uploaded or cloud-hosted data
 @app.route('/process', methods=['POST'])
 def process_data():
     print("🔍 /process route hit")
@@ -79,7 +85,7 @@ def process_data():
         print("📊 Analyzing data")
         insights = analyze_data(df)
 
-        # ✅ Store insights in a subfolder like saved-insights/vYYYYMMDD/insights.json
+        # ✅ Store insights
         store_insights(
             insights,
             STORAGE_ACCOUNT_NAME,
@@ -103,6 +109,7 @@ def process_data():
             "details": "Make sure your CSV files are correct and properly formatted."
         }), 500
 
+# ✅ Contact form handler
 @app.route('/contact', methods=['POST'])
 def contact_submission():
     try:
@@ -149,6 +156,7 @@ def ask_gpt():
         print(traceback.format_exc())
         return jsonify({"error": str(e)}), 500
 
+# ✅ Run the server locally
 if __name__ == '__main__':
     print("✅ Flask app starting...")
     app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)

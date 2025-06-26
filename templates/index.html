@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Celebal Analytics Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/styles.css" />
-  <link rel="stylesheet" href="/static/css/chatbot.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}" />
 </head>
 <body>
   <nav>
@@ -100,8 +100,8 @@
 
   <!-- 📊 Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="/static/js/script.js"></script>
-  <script src="/static/js/chart-config.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chart-config.js') }}"></script>
 
   <!-- 🤖 Chatbot Widget -->
   <div id="chatbot-widget">
