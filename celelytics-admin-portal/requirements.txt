@@ -1,0 +1,5 @@
+Flask
+python-dotenv
+azure-data-tables
+azure-core
+pytz

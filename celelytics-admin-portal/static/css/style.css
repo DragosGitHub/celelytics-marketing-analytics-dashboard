@@ -1,0 +1,216 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('../assets/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+nav {
+    background-color: rgba(20, 20, 20, 0.7);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.moving-box {
+    animation: float 2s infinite ease-in-out;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+.logout a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-box {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.login-box input {
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+.login-box button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: crimson;
+    color: white;
+    font-weight: bold;
+}
+
+.table-container {
+    margin: 20px auto;
+    width: 95%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #999;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .moving-box {
+        font-size: 16px;
+    }
+    th, td {
+        font-size: 12px;
+    }
+}
+
+.dashboard-controls {
+    text-align: center;
+    margin: 20px;
+}
+.dashboard-controls button {
+    padding: 10px 15px;
+    margin: 5px;
+    background: #b30000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+.dashboard-controls button:hover {
+    background: #800000;
+}
+
+.message-table {
+    overflow-x: auto;
+    padding: 0 20px;
+}
+.message-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    overflow: hidden;
+}
+.message-table th, td {
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+.message-table th {
+    background: #7b2d26;
+    color: white;
+}
+
+/* ⬇️ Updated Popup styling ⬇️ */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    background: rgba(30, 30, 30, 0.8); /* Charcoal translucent */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background: rgba(45, 45, 45, 0.95);
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    font-family: Arial, sans-serif;
+    animation: floatUp 0.5s ease-in-out;
+}
+
+.popup-content p {
+    font-size: 15px;
+    margin: 10px 0;
+}
+
+.close-btn {
+    float: right;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ccc;
+    transition: color 0.2s;
+}
+.close-btn:hover {
+    color: #fff;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.dummy-warning {
+    margin-top: 20px;
+    background: rgba(30, 30, 30, 0.7);
+    color: #fff5cc;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    animation: floatBox 3s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes floatBox {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}

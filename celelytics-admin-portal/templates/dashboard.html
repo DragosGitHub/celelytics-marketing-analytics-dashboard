@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Celelytics Admin Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="moving-box">Celelytics Admin Portal</div>
+        <div class="logout"><a href="/logout">Logout</a></div>
+    </nav>
+
+    <!-- Welcome section -->
+    <section class="welcome-section">
+        <h2>Welcome, {{ user }}</h2>
+        <p>Here are your latest messages from 
+            <a href="https://celelytics.onrender.com" target="_blank">celelytics.onrender.com</a>
+        </p>
+    </section>
+
+    <!-- Controls -->
+    <div class="dashboard-controls">
+        <button onclick="refreshMessages()">🔄 Refresh</button>
+        <button onclick="selectAll()">Select All</button>
+        <button onclick="deleteSelected()">🗑 Delete Selected</button>
+    </div>
+
+    <!-- Message Table -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Preview</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Full</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for msg in messages %}
+                <tr>
+                    <td>
+                        <input type="checkbox" class="select-box"
+                            data-name="{{ msg.name }}"
+                            data-email="{{ msg.email }}"
+                            data-partition-key="{{ msg.partition_key }}"
+                            data-row-key="{{ msg.row_key }}"
+                        >
+                    </td>
+                    <td>{{ msg.sno }}</td>
+                    <td>{{ msg.name }}</td>
+                    <td>{{ msg.email }}</td>
+                    <td>{{ msg.message[:40] }}{% if msg.message|length > 40 %}...{% endif %}</td>
+                    <td>{{ msg.date }}</td>
+                    <td>{{ msg.time }}</td>
+                    <td>
+                        <button class="view-btn"
+                            data-name="{{ msg.name }}"
+                            data-email="{{ msg.email }}"
+                            data-date="{{ msg.date }}"
+                            data-time="{{ msg.time }}"
+                            data-message="{{ msg.message | escape }}">🔍 View</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Message Popup -->
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <span class="close-btn">✖</span>
+            <div class="popup-message">
+                <p><strong>Name:</strong> <span id="popup-name"></span></p>
+                <p><strong>Email:</strong> <span id="popup-email"></span></p>
+                <p><strong>Date:</strong> <span id="popup-date"></span></p>
+                <p><strong>Time:</strong> <span id="popup-time"></span></p>
+                <p><strong>Message:</strong></p>
+                <p id="popup-message" class="full-message"></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
