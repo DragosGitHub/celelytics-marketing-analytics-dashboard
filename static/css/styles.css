@@ -525,3 +525,28 @@ footer {
     text-align: center;
   }
 }
+
+.admin-access-button-box {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.admin-portal-btn {
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  background: rgba(255, 0, 0, 0.2); /* Red glass effect */
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, background 0.3s ease;
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+  border: 1px solid rgba(255, 0, 0, 0.4);
+}
+
+.admin-portal-btn:hover {
+  transform: scale(1.05);
+  background: rgba(255, 0, 0, 0.3);
+}
