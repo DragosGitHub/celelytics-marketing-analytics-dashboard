@@ -1,5 +1,6 @@
-Flask
-python-dotenv
-azure-data-tables
-azure-core
-pytz
+Flask==3.1.1
+python-dotenv==1.0.1
+azure-data-tables==12.7.0
+azure-core==1.30.1
+pytz==2024.1
+gunicorn==21.2.0
