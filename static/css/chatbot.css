@@ -102,3 +102,137 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+/* ========== MOBILE OPTIMIZATION (below 768px) ========== */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem 1rem;
+  }
+
+  .logo-box {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .brand-logo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .brand-subtext {
+    font-size: 0.8rem;
+    margin-top: 2px;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;  /* Prevent wrapping */
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0;
+    margin-top: 0.3rem;
+    overflow-x: auto;   /* Scrollable if overflow */
+  }
+
+
+  nav ul li {
+    margin: 0.2rem;
+  }
+
+  nav ul li a {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+    white-space: nowrap;  /* Prevent link text wrapping */
+  }
+
+
+  .hero {
+    margin-top: 90px; /* Push content down below fixed navbar */
+    height: auto;
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-buttons button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .upload-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .chart-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .chart-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  #contactForm {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  #chatbot-widget {
+    bottom: 7ch;
+    right: 10px;
+    left: auto;
+    align-items: flex-end;
+    width: auto;
+  }
+
+  #openChatBtn {
+    font-size: 36px;
+  }
+
+  #chatContainer {
+    width: 90vw;
+    max-width: 320px;
+    height: 60vh;
+  }
+
+  #chatMessages {
+    max-height: 50%;
+  }
+
+  .info-footer {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .wide-card {
+    width: 95%;
+    margin: 1rem auto;
+    padding: 1.2rem;
+  }
+}

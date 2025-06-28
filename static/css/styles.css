@@ -336,21 +336,27 @@ footer {
 }
 
 .sticky-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(26, 26, 26, 0.9);
-    color: #ffffff;
-    text-align: center;
-    padding: 0.6rem 1rem;
-    font-size: 0.95rem;
-    font-family: 'Roboto', sans-serif;
-    z-index: 9999;
-    backdrop-filter: blur(8px);
-    transition: opacity 0.4s ease-in-out;
-    opacity: 1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(26, 26, 26, 0.9);
+  color: #ffffff;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-family: 'Roboto', sans-serif;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+  transition: opacity 0.4s ease-in-out;
+  opacity: 1;
 }
+
+.sticky-footer.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 .info-footer {
     display: flex;
@@ -550,3 +556,94 @@ footer {
   transform: scale(1.05);
   background: rgba(255, 0, 0, 0.3);
 }
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 1rem;
+  }
+
+  .logo-box {
+    flex: 1 1 auto;
+    margin: 0;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    padding: 0.5rem 0;
+    margin: 0;
+    gap: 0.5rem;
+  }
+
+  nav ul::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  nav ul li {
+    flex: 0 0 auto;
+    margin: 0 0.5rem;
+  }
+
+  .brand-logo {
+    font-size: 1rem;
+  }
+
+  .brand-subtext {
+    font-size: 0.7rem;
+  }
+
+  .hero-content h1 {
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-content p {
+    color: #ffffff;
+    text-shadow: 1.5px 1.5px 6px rgba(0, 0, 0, 0.7);
+  }
+
+  /* ✅ Fix: Prevent content overlap with fixed nav & footer */
+  body {
+    padding-top: 80px;     /* Space for fixed navbar */
+    padding-bottom: 60px;  /* Space for sticky footer */
+    background-color: transparent; /* Keep translucent effect */
+  }
+
+  main,
+  section.hero,
+  section#upload,
+  section#insights,
+  section#contact {
+    margin-top: 0;
+  }
+
+  .hero {
+    padding-top: 40px; /* Extra spacing inside hero */
+  }
+}
+
+/* Sticky footer improvements */
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+  z-index: 999;
+  font-size: 0.85rem;
+}
+
+
+

@@ -22,7 +22,6 @@
     </ul>
   </nav>
 
-
   <section id="home" class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -32,7 +31,7 @@
         <button id="useDefaultBtn">Use Sample Data</button>
         <button id="uploadBtn">Upload Your Data</button>
       </div>
-      <!-- ✅ Instruction Box Added Here -->
+      <!-- ✅ Instruction Box -->
       <div class="instructions-box">
         <h2>⚠️How to use this Site?</h2>
         <p>
@@ -45,11 +44,11 @@
         </p>
       </div>
       <!-- 🔴 Admin Portal Button -->
-        <div class="admin-access-button-box">
-          <a href="https://admin-celelytics.onrender.com/" target="_blank" class="admin-portal-btn">
-            ⚙️ Access Admin Portal
-          </a>
-        </div>
+      <div class="admin-access-button-box">
+        <a href="https://admin-celelytics.onrender.com/" target="_blank" class="admin-portal-btn">
+          ⚙️ Access Admin Portal
+        </a>
+      </div>
     </div>
   </section>
 
@@ -141,18 +140,32 @@
     Project built by <strong>Saptadip Das</strong> as part of <strong>Celebal Technologies Internship</strong>
   </footer>
 
+  <!-- ✅ Auto-hide Footer Script for Desktop + Mobile -->
   <script>
     const footer = document.getElementById('mainFooter');
-    let hideTimer;
-    const showFooter = () => {
-      footer.style.opacity = '1';
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(() => {
-        footer.style.opacity = '0';
-      }, 1000);
-    };
-    document.addEventListener('mousemove', showFooter);
+    let footerHideTimer;
 
+    function showFooterTemporarily() {
+      footer.classList.remove('hidden');
+      clearTimeout(footerHideTimer);
+      footerHideTimer = setTimeout(() => {
+        footer.classList.add('hidden');
+      }, 2500);
+    }
+
+    // Auto-hide footer after initial load
+    window.addEventListener('load', () => {
+      footerHideTimer = setTimeout(() => {
+        footer.classList.add('hidden');
+      }, 2000);
+    });
+
+    // Show on desktop movement or mobile touch
+    document.addEventListener('mousemove', showFooterTemporarily);
+    document.addEventListener('touchstart', showFooterTemporarily);
+  </script>
+
+  <script>
     const toggleChat = () => {
       document.getElementById('chatContainer').classList.toggle('hidden');
     };
