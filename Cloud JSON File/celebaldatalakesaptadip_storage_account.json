@@ -1,0 +1,75 @@
+{
+    "sku": {
+        "name": "Standard_RAGRS",
+        "tier": "Standard"
+    },
+    "kind": "StorageV2",
+    "id": "/subscriptions/6e501e3e-3f9e-47a6-a88a-fcb46cc9f66e/resourceGroups/rg-celebal-saptadip/providers/Microsoft.Storage/storageAccounts/celebaldatalakesaptadip",
+    "name": "celebaldatalakesaptadip",
+    "type": "Microsoft.Storage/storageAccounts",
+    "location": "eastus",
+    "tags": {},
+    "properties": {
+        "dnsEndpointType": "Standard",
+        "defaultToOAuthAuthentication": false,
+        "publicNetworkAccess": "Enabled",
+        "keyCreationTime": {
+            "key1": "2025-06-24T07:54:46.1811577Z",
+            "key2": "2025-06-24T07:54:46.1811577Z"
+        },
+        "allowCrossTenantReplication": false,
+        "privateEndpointConnections": [],
+        "isSftpEnabled": false,
+        "minimumTlsVersion": "TLS1_2",
+        "allowBlobPublicAccess": false,
+        "allowSharedKeyAccess": true,
+        "largeFileSharesState": "Enabled",
+        "isHnsEnabled": true,
+        "networkAcls": {
+            "bypass": "AzureServices",
+            "virtualNetworkRules": [],
+            "ipRules": [],
+            "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+            "requireInfrastructureEncryption": false,
+            "services": {
+                "file": {
+                    "keyType": "Account",
+                    "enabled": true,
+                    "lastEnabledTime": "2025-06-24T07:54:46.1967858Z"
+                },
+                "blob": {
+                    "keyType": "Account",
+                    "enabled": true,
+                    "lastEnabledTime": "2025-06-24T07:54:46.1967858Z"
+                }
+            },
+            "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot",
+        "provisioningState": "Succeeded",
+        "creationTime": "2025-06-24T07:54:46.0249502Z",
+        "primaryEndpoints": {
+            "dfs": "https://celebaldatalakesaptadip.dfs.core.windows.net/",
+            "web": "https://celebaldatalakesaptadip.z13.web.core.windows.net/",
+            "blob": "https://celebaldatalakesaptadip.blob.core.windows.net/",
+            "queue": "https://celebaldatalakesaptadip.queue.core.windows.net/",
+            "table": "https://celebaldatalakesaptadip.table.core.windows.net/",
+            "file": "https://celebaldatalakesaptadip.file.core.windows.net/"
+        },
+        "primaryLocation": "eastus",
+        "statusOfPrimary": "available",
+        "secondaryLocation": "westus",
+        "statusOfSecondary": "available",
+        "secondaryEndpoints": {
+            "dfs": "https://celebaldatalakesaptadip-secondary.dfs.core.windows.net/",
+            "web": "https://celebaldatalakesaptadip-secondary.z13.web.core.windows.net/",
+            "blob": "https://celebaldatalakesaptadip-secondary.blob.core.windows.net/",
+            "queue": "https://celebaldatalakesaptadip-secondary.queue.core.windows.net/",
+            "table": "https://celebaldatalakesaptadip-secondary.table.core.windows.net/"
+        }
+    },
+    "apiVersion": "2022-05-01"
+}
